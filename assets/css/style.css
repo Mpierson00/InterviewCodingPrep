@@ -1,16 +1,120 @@
-body, html {
+#quiz-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+body,
+html {
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    height: auto;
     background-color: aliceblue;
-    text-align: center;
+
 }
 
 #quiz-container {
-    margin: auto;
-    width: 80%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+    width: 90%;
     max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#high-scores-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+h1 {
+    color: #333;
+    font-size: 30px;
+    text-align: center;
+    margin: 0 10px;
+    word-wrap: break-word;
 }
 
 .hide {
     display: none;
 }
 
+.controls,
+#answer-buttons,
+#high-scores {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btns,
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: cornflowerblue;
+}
+
+button.correct {
+    background-color: gold;
+}
+
+button.wrong {
+    background-color: blue;
+}
+
+#timer {
+    font-size: 15px;
+    padding-right: 15px;
+
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    #quiz-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #timer {
+        /* padding-top: 10px; */
+        align-self: flex-end;
+    }
+}
