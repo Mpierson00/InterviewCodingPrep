@@ -95,6 +95,37 @@ input {
     font-size: calc(1rem + 0.5vw);
 }
 
+#high-scores-table {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 20px;
+    text-align: left;
+}
+
+#high-scores-table li {
+    background-color: #f9f9f9;
+    border:  1px solid #ddd;
+    margin-top: -1px;
+    padding: 8px;
+    font-size: 18px;
+}
+
+#back-btn {
+    display: inline-block;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#back-btn:hover {
+    background-color: #0056b3;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: 1.2rem;
