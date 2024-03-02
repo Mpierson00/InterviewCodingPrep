@@ -19,3 +19,26 @@ const highScoresSection = document.getElementById('high-scores');
 const saveScoreButton = document.getElementById('save-score-btn');
 const retryButton = document.getElementById('retry-btn');
 const initialsInput = document.getElementById('initials');
+
+startButton.addEventListener('click', startGame);
+
+function startGame() {
+    startButton.classList.add('hide');
+    questionContainerElement.classList.remove('hide');
+    currentQuestionIndex = 0;
+    score = 0;
+    startTimer();
+    setNextQuestion();
+}
+
+function startTimer() {
+    timerElement.textContent = timer;
+    timerId = setInterval(() => {
+        timer--;
+        timerElement.textContent = timer;
+        if (timer <= 0) {
+            clearInterval(timerId);
+            endGame();
+        }
+    }, 1000);
+}
