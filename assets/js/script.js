@@ -76,3 +76,21 @@ function selectAnswer(index, correct) {
         endGame();
     }
 }
+
+function endGame() {
+    clearInterval(timerId);
+    questionContainerElement.classList.add('hide');
+    highScoresSection.classList.remove('hide');
+    saveScoreButton.addEventListener('click', saveHighScore);
+    retryButton.classList.remove('hide');
+    retryButton.addEventListener('click', () => {
+        highScoresSection.classList.add('hide');
+        startGame();
+    });
+}
+
+function saveHighScore() {
+    console.log("Initials: " + initialsInput.value + ", Score: " + score);
+
+    initialsInput.value = '';
+}
