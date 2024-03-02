@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodingQuiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
 <body>
     <header id="quiz-header">
         <a href="#" id="high-scores-link">Highscores</a>
         <div id="timer">Time: <span id="time">60</span> secs</div>
     </header>
-    <div id="quiz-container">
+    <main id="quiz-container">
         <h1>JavaScript Fundamentals Quiz</h1>
-        <div id="question-container" class="hide">
+        <section id="question-container" class="hide" role="region" aria-live="polite">
             <div id="question"></div>
-            <div id="answer-buttons" class="btns">
-            </div>
-        </div>
+            <div id="answer-buttons" class="btns"></div>
+        </section>
         <div class="controls">
             <button id="start-btn">Start</button>
         </div>
-        <div id="high-scores" class="hide">
-            Enter intials: <input type="text" id="initials" />
+        <section id="high-scores" class="hide">
+            Enter initials: <input type="text" id="initials" />
             <button id="save-score-btn">Save Score</button>
-        </div>
-    </div>
-    <script src="./assets/java/script.js"></script>
+            <button id="retry-btn" class="hide">Try Again</button>
+        </section>
+        <section id="high-scores-list" class="hide">
+            <h2>High Scores</h2>
+            <ul id="high-scores-table"></ul>
+        </section>
+    </main>
+    <script src="./assets/js/script.js"></script>
 </body>
-
 </html>
