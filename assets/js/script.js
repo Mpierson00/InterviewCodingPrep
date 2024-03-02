@@ -42,3 +42,37 @@ function startTimer() {
         }
     }, 1000);
 }
+
+function setNextQuestion() {
+    resetState();
+    showQuestion(questions[currentQuestionIndex]);
+}
+
+function showQuestion(question) {
+    questionElement.innerText = question.question;
+    question.choices.forEach((choice, index) => {
+        const button = document.createElement('button');
+        button.innerText = choice;
+        button.classList.add('btn');
+        button.addEventListener('click', () => selectAnswer(index,question.correct));
+        answerButtonsElement.appendChild(button);
+    })
+}
+
+function resetState() {
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+    }
+}
+
+function selectAnswer(index, correct) {
+    if (index === correct) {
+        score++;
+    }
+    if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        setNextQuestion();
+    } else {
+        endGame();
+    }
+}
