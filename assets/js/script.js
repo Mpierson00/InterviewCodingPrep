@@ -16,27 +16,32 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const timerElement = document.getElementById('time');
 const highScoresSection = document.getElementById('high-scores');
+const resultsSection = document.getElementById('results');
+const scoreParagraph = document.getElementById('score');
 const saveScoreButton = document.getElementById('save-score-btn');
 const retryButton = document.getElementById('retry-btn');
 const initialsInput = document.getElementById('initials');
 
-document.getElementById('start-btn').addEventListener('click', startGame);
+startButton.addEventListener('click', startGame);
+retryButton.addEventListener('click', restartQuiz);
+saveScoreButton.addEventListener('click', saveHighScore);
+
 
 function startGame() {
     startButton.classList.add('hide');
     questionContainerElement.classList.remove('hide');
     currentQuestionIndex = 0;
     score = 0;
-    questions.sort(() => Math.random() - 0.5);  //Shuffle questions
+    questions.sort(() => Math.random() - 0.5); // Shuffle questions
     startTimer();
     setNextQuestion();
 }
 
 function startTimer() {
-    timerElement.textContent = timer;
+    clearInterval(timerId);
     timerId = setInterval(() => {
         timer--;
-        timerElement.textContent = timer;
+        updateTimerDisplay();
         if (timer <= 0) {
             clearInterval(timerId);
             endGame();
@@ -55,9 +60,9 @@ function showQuestion(question) {
         const button = document.createElement('button');
         button.innerText = choice;
         button.classList.add('btn');
-        button.addEventListener('click', () => selectAnswer(index,question.correct));
+        button.addEventListener('click', () => selectAnswer(index, question.correct));
         answerButtonsElement.appendChild(button);
-    })
+    });
 }
 
 function resetState() {
@@ -81,43 +86,32 @@ function selectAnswer(index, correct) {
 function endGame() {
     clearInterval(timerId);
     questionContainerElement.classList.add('hide');
-    highScoresSection.classList.remove('hide');
-    saveScoreButton.addEventListener('click', saveHighScore);
-    retryButton.classList.remove('hide');
-    retryButton.addEventListener('click', () => {
-        highScoresSection.classList.add('hide');
-        startGame();
-    });
+    const scorePercentage = (score / questions.length) * 100;
+    scoreParagraph.textContent = `Your score: ${scorePercentage}%`;
+    resultsSection.classList.remove('hide');
+}
+
+function restartQuiz() {
+    score = 0;
+    currentQuestionIndex = 0;
+    timer = 60;
+    updateTimerDisplay();
+    resultsSection.classList.add('hide');
+    questionContainerElement.classList.add('hide');
+    startButton.classList.remove('hide');
+    document.getElementById('question').innerHTML = '';
+    document.getElementById('answer-buttons').innerHTML = '';
+}
+
+function updateTimerDisplay() {
+    timerElement.textContent = timer;
 }
 
 function saveHighScore() {
-   const initials = initialsInput.value;
-   const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-   highScores.push({ initials, score });
-   highScores.sort((a, b) => b.score - a.score);
-   localStorage.setItem('highScores', JSON.stringify(highScores));
-    console.log("Initials: " + initialsInput.value + ", Score: " + score);
-
-    initialsInput.value = '';
-}
-
-document.getElementById('high-scores-link').addEventListener('click', function(event) {
-    event.preventDefault();
-    displayHighscores();
-})
-
-function displayHighscores() {
-    const highScoresList = document.getElementById('high-scores-table');
+    const initials = initialsInput.value;
     const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
-    highScoresList.innerHTML = '';
-    highScores.forEach(score => {
-        const scoreElement = document.createElement('li');
-        scoreElement.textContent = `${score.initials}: ${score.score}`;
-        highScoresList.appendChild(scoreElement);
-    });
-document.getElementById('back-btn').addEventListener('click', function() {
-    document.getElementById('quiz-container').classList.remove('hide');
-    document.getElementById('high-scores-list').classList.add('hide');
-});
-
+    highScores.push({ initials, score });
+    highScores.sort((a, b) => b.score - a.score);
+    localStorage.setItem('highScores', JSON.stringify(highScores));
+    initialsInput.value = '';
 }

@@ -26,9 +26,8 @@ header {
     width: 90%;
     max-width: 600px;
     margin-top: 60px;
-    /*no overlap with header */
     padding: 20px;
-    background-color:grey;
+    background-color: grey;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -49,12 +48,11 @@ header {
     background-color: #0056b3;
 }
 
-.controls,
-#high-scores {
+.controls, #high-scores {
     margin-top: 20px;
     text-align: center;
 }
-/* Hide the buttons and highscores */
+
 .hide {
     display: none;
 }
@@ -68,31 +66,10 @@ header {
     padding: 10px;
     margin: 10px;
     width: calc(100% - 22px);
-    /* Adjust based on padding */
 }
 
 #high-scores-list {
     margin-top: 20px;
-}
-
-#high-scores-table {
-    list-style-type: none;
-    padding: 0;
-}
-
-h1 {
-    font-size: calc(1.375rem + 1.5vw);
-}
-
-#timer {
-    padding-right: 30px;
-}
-
-p,
-li,
-button,
-input {
-    font-size: calc(1rem + 0.5vw);
 }
 
 #high-scores-table {
@@ -104,7 +81,7 @@ input {
 
 #high-scores-table li {
     background-color: #f9f9f9;
-    border:  1px solid #ddd;
+    border: 1px solid #ddd;
     margin-top: -1px;
     padding: 8px;
     font-size: 18px;
@@ -126,19 +103,53 @@ input {
     background-color: #0056b3;
 }
 
+/* Results section styling */
+#results {
+    text-align: center;
+    padding: 20px;
+    background-color: #333; /* Dark background for the results */
+    color: white; /* White text color */
+    border-radius: 8px;
+    margin: 20px 0; /* Spacing around the results box */
+}
+
+#results h2 {
+    margin: 0 0 10px;
+    font-size: 24px;
+}
+
+#results p {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+#retry-btn {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#retry-btn:hover {
+    background-color: #0056b3;
+}
+
 @media (max-width: 600px) {
     h1 {
         font-size: 1.2rem;
     }
-}
 
-@media (max-width: 600px) {
     #quiz-header {
         flex-direction: column;
         align-items: flex-start;
     }
 
     #timer {
+        padding-top: 10px; /* Added padding for better spacing on small screens */
         align-self: flex-end;
     }
 }
