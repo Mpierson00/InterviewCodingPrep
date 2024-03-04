@@ -1,9 +1,10 @@
+// Question and answer array
 const questions = [
-    { question: "Question 1", choices: ["A1", "B1", "C1", "D1"], correct: 0 },
-    { question: "Question 2", choices: ["A2", "B2", "C2", "D2"], correct: 1 },
-    { question: "Question 3", choices: ["A3", "B3", "C3", "D3"], correct: 2 },
-    { question: "Question 4", choices: ["A4", "B4", "C4", "D4"], correct: 3 },
-    { question: "Question 5", choices: ["A5", "B5", "C5", "D5"], correct: 0 }
+    { question: "What is the correct syntax for creating a new object in JavaScript?", choices: ["var obj = new Object();", "var obj = create Object();", "var obj = Object();", "var obj = new createObject();"], correct: 0 },
+    { question: "How can you access the value of the property 'name' in the object 'person'?", choices: ["person[name];", "person.name;", "person->name;", "person::name;"], correct: 1 },
+    { question: "Which method can be used to add a property to an existing object?", choices: ["Object.addProperty(obj, 'newProp', 'value');", "obj.newProp = 'value';", "obj.addProperty('newProp', 'value');", "addProperty(obj, 'newProp', 'value');"], correct: 1 },
+    { question: "How do you create an array in JavaScript?", choices: ["var arr = new Array('item1', 'item2');", "var arr = ['item1', 'item2'];", "var arr = (1:'item1', 2:'item2');", "var arr = array('item1', 'item2');"], correct: 1 },
+    { question: "How can you check if a property 'age' exists in an object 'person'?", choices: ["person.contains('age')", "person.exists('age')", "'age' in person", "person.hasProperty('age')"], correct: 2 }
 ];
 let currentQuestionIndex = 0;
 let score = 0;
@@ -22,6 +23,7 @@ const retryButton = document.getElementById('retry-btn');
 const initialsInput = document.getElementById('initials');
 const backButton = document.getElementById('back-btn')
 
+// Button and links event listeners
 startButton.addEventListener('click', startGame);
 retryButton.addEventListener('click', restartQuiz);
 saveScoreButton.addEventListener('click', saveHighScore);
@@ -32,6 +34,7 @@ document.getElementById('high-scores-link').addEventListener('click', function (
 });
 
 backButton.addEventListener('click', function () {
+    // Hides high scores and shows quiz
     document.getElementById('high-scores-list').classList.add('hide');
     document.getElementById('quiz-container').classList.remove('hide');
     score = 0;
@@ -58,9 +61,9 @@ function startGame() {
 }
 
 function startTimer() {
-    clearInterval(timerId);
+    clearInterval(timerId);  //Clear existing timer
     timerId = setInterval(() => {
-        timer--;
+        timer--; //Decrease timer
         updateTimerDisplay();
         if (timer <= 0) {
             clearInterval(timerId);
@@ -69,32 +72,43 @@ function startTimer() {
     }, 1000);
 }
 
+// Display next question
 function setNextQuestion() {
     resetState();
-    showQuestion(questions[currentQuestionIndex]);
+    showQuestion(questions[currentQuestionIndex]); //Shows current question
 }
-
+// Shows questions and answer choices
 function showQuestion(question) {
     questionElement.innerText = question.question;
-    question.choices.forEach((choice, index) => {
-        const button = document.createElement('button');
+    question.choices.forEach((choice, index) => { 
+        const button = document.createElement('button'); //Create a button for each choice
         button.innerText = choice;
         button.classList.add('btn');
         button.addEventListener('click', () => selectAnswer(index, question.correct));
-        answerButtonsElement.appendChild(button);
+        answerButtonsElement.appendChild(button); //Add button to DOM
     });
 }
 
+//Resets the state before showing new question
 function resetState() {
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
     }
 }
 
+// Function to handle answer choices
 function selectAnswer(index, correct) {
     if (index === correct) {
-        score++;
+        score++; //Increase score if answer is right
+    } else {
+        timer -= 5; //Decrease timer by 5 is incorrect
+        updateTimerDisplay();
+        if (timer <= 0) {
+            timer = 0;
+            endGame();
+        }
     }
+    // Loads next question or end the game
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         setNextQuestion();
@@ -107,10 +121,10 @@ function endGame() {
     clearInterval(timerId);
     questionContainerElement.classList.add('hide');
     const scorePercentage = (score / questions.length) * 100;
-    scoreParagraph.textContent = `Your score: ${scorePercentage}%`;
+    scoreParagraph.textContent = `Your score: ${scorePercentage}%`; //Displays the score
     resultsSection.classList.remove('hide');
 }
-
+// Resets the quiz
 function restartQuiz() {
     score = 0;
     currentQuestionIndex = 0;

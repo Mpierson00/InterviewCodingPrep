@@ -1,12 +1,13 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: rgb(212, 115, 115);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color:  #f7f7f7;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: #333;
 }
 
 header {
@@ -17,42 +18,47 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: blueviolet;
+    background-color:  #5CDB95;
     color: white;
     padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #quiz-container {
-    width: 90%;
+    width: 100%;
     max-width: 600px;
-    margin-top: 60px;
+    margin: 60px 0;
     padding: 20px;
-    background-color: grey;
+    background-color: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#timer {
+    padding-right: 30px;
 }
 
 .btn {
     cursor: pointer;
-    background-color: #007bff;
+    background-color: #05386B;
     color: white;
     border: none;
     padding: 10px 20px;
-    margin: 5px;
+    margin: 10px 0;
     border-radius: 5px;
     display: inline-block;
     transition: background-color 0.3s;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #379683;
 }
 
 .controls, #high-scores {
     margin-top: 20px;
     text-align: center;
 }
-
+/* Hides multiple elements until js overwrites */
 .hide {
     display: none;
 }
@@ -77,8 +83,8 @@ header {
     margin: 20px auto;
     width: 80%;
     max-width: 600px;
+    margin-top: 100px;
 }
-
 #high-scores-table {
     list-style-type: none;
     padding: 0;
@@ -86,7 +92,7 @@ header {
 }
 
 #high-scores-table li {
-    background-color: #ffffff;
+    background-color: white;
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
@@ -97,12 +103,12 @@ header {
     display: inline-block;
     font-size: 18px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color:  #007bff;
     color: white;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
+    border: none;
 }
 
 #back-btn:hover {
@@ -119,17 +125,11 @@ header {
     margin: 20px 0;
 }
 
-#results h2 {
-    margin: 0 0 10px;
-    font-size: 24px;
-}
-
-#results p {
-    font-size: 20px;
+#results h2, #results p {
     margin: 10px 0;
 }
 
-#retry-btn {
+#retry-btn, #save-score-btn {
     font-size: 18px;
     padding: 10px 20px;
     background-color: #007bff;
@@ -140,8 +140,12 @@ header {
     transition: background-color 0.3s;
 }
 
-#retry-btn:hover {
+#retry-btn:hover, #save-score-btn:hover {
     background-color: #0056b3;
+}
+/* Shows when .hide is removed */
+#start-bin:not(.hide) {
+    display: inline-block;
 }
 
 @media (max-width: 600px) {

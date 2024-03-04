@@ -7,19 +7,23 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
+    <!-- Timer and high score hyperlink -->
     <header id="quiz-header">
         <a href="#" id="high-scores-link">Highscores</a>
         <div id="timer">Time: <span id="time">60</span> secs</div>
     </header>
+    <!-- Quiz questions and answers -->
     <main id="quiz-container">
         <h1>JavaScript Fundamentals Quiz</h1>
         <section id="question-container" class="hide">
             <div id="question"></div>
             <div id="answer-buttons" class="btns"></div>
         </section>
+        <!-- Start button -->
         <div class="controls">
             <button id="start-btn" class="btn">Start</button>
         </div>
+        <!-- Score at the end and try again button -->
         <section id="results" class="hide">
             <h2>Your Score</h2>
             <p id="score">0</p>
@@ -28,6 +32,7 @@
             <button id="save-score-btn" class="btn">Save Score</button>
         </section>
     </main>
+    <!-- High scores list and back button-->
     <section id="high-scores-list" class="hide">
         <h2>High Scores</h2>
         <ul id="high-scores-table"></ul>
