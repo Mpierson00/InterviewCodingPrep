@@ -1,33 +1,40 @@
 # Coding Quiz
 
+![Coding Quiz](./assets/img/127.0.0.1_5501_Class-Project_CodingQuiz_codingQuiz.html.png)
 
 ## Features
 
-- **
-- **
-- **
+- Interactive quiz application to test knowledge on JavaScript fundamentals.
+- Dynamic question presentation with multiple-choice answers.
+- Timer functionality that deducts time for incorrect answers and ends the quiz when time runs out.
+- Ability to save high scores with user initials to track performance over time.
+- Responsive design for an optimal user experience across various devices.
 
 ## Technologies Used
 
 - HTML
 - CSS
--JavaScript  
+- JavaScript
 
 ## Getting Started
 
-To view the project locally, simply clone the repository to your local machine and open `index.html` in your web browser.
+To view the project locally, follow these steps:
+
+1. Clone the repository to your local machine using the command `git clone [https://github.com/Mpierson00/InterviewCodingPrep]`.
+2. Navigate to the cloned directory.
+3. Open the `index.html` file in your web browser to start the quiz.
 
 ## Contributing
 
+Contributions to the Coding Quiz project are welcome! If you have suggestions or improvements, feel free to fork the repository and submit a pull request with your changes.
+
 ## Acknowledgments
 
+- Thank you to all the contributors who have helped in refining and enhancing this project.
+- Special thanks to the JavaScript and web development communities for their invaluable resources and support.
 
+## License
 
-Thank you for visiting my repository 
-
-
-
-## Liscense
 MIT License 
 
 Copyright (c) [2024] [Michael Pierson]
